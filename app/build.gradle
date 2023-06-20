@@ -39,7 +39,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.vr:sdk-panowidget:1.80.0'
 
@@ -52,7 +52,14 @@ dependencies {
     // CameraX View class[可选]最佳实践，最好用里面的PreviewView，它会自行判断用SurfaceView还是TextureView来实现
     implementation "androidx.camera:camera-view:$camera_version"
 
-    implementation "androidx.glance:glance-appwidget:1.0.0-beta01"
+    def glance_version = "1.0.0-beta01"
+    implementation "androidx.glance:glance:$glance_version"
+    implementation "androidx.glance:glance-appwidget:$glance_version"
+
+    // WorkManager Kotlin + coroutines
+    implementation 'androidx.work:work-runtime-ktx:2.8.1'
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-runtime:1.0-M1-1.4.0-rc'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
