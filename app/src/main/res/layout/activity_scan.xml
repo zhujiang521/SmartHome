@@ -33,7 +33,7 @@
             android:maxLines="1"
             android:text="@string/scan_name"
             android:textColor="@color/title_color"
-            android:textSize="20sp" />
+            android:textSize="@dimen/title_size" />
 
     </androidx.appcompat.widget.Toolbar>
 

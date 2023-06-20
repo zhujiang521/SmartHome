@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="toolbar_horizontal_padding">12dp</dimen>
+    <dimen name="title_size">20sp</dimen>
 
     <!--
 Refer to App Widget Documentation for margin information

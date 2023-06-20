@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="@string/home"
             android:textColor="@color/title_color"
-            android:textSize="23sp" />
+            android:textSize="@dimen/title_size" />
 
         <ImageView
             android:id="@+id/vr_scan"
@@ -40,5 +40,193 @@
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:layout_below="@id/vr_toolbar" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vr_view"
+        android:layout_margin="@dimen/toolbar_horizontal_padding"
+        app:cardCornerRadius="10dp"
+        app:contentPadding="@dimen/toolbar_horizontal_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_air_selected"
+                    android:gravity="center"
+                    android:text="@string/air"
+                    android:textColor="@color/icon_selected"
+                    android:textSize="15sp"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_light"
+                    android:gravity="center"
+                    android:text="@string/light"
+                    android:textColor="@color/title_color"
+                    android:textSize="15sp"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_display"
+                    android:gravity="center"
+                    android:text="@string/display"
+                    android:textColor="@color/title_color"
+                    android:textSize="15sp"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_projector"
+                    android:gravity="center"
+                    android:text="@string/projector"
+                    android:textColor="@color/title_color"
+                    android:textSize="15sp"
+                    tools:ignore="UseCompatTextViewDrawableXml" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_margin="@dimen/toolbar_horizontal_padding"
+                android:background="@color/title_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/toolbar_horizontal_padding"
+                android:gravity="center_vertical"
+                android:minHeight="36dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="空调开关"
+                    android:textColor="@color/title_color"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText,UseCompatTextViewDrawableXml" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/toolbar_horizontal_padding"
+                android:gravity="center_vertical"
+                android:minHeight="36dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="室内温度"
+                    android:textColor="@color/title_color"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText,UseCompatTextViewDrawableXml" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="26°"
+                    android:textColor="@color/title_color"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText,UseCompatTextViewDrawableXml" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/toolbar_horizontal_padding"
+                android:gravity="center_vertical"
+                android:minHeight="36dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="空气湿度"
+                    android:textColor="@color/title_color"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText,UseCompatTextViewDrawableXml" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="75%"
+                    android:textColor="@color/title_color"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText,UseCompatTextViewDrawableXml" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/toolbar_horizontal_padding"
+                android:gravity="center_vertical"
+                android:minHeight="36dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="空气纯净度"
+                    android:textColor="@color/title_color"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText,UseCompatTextViewDrawableXml" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="90%"
+                    android:textColor="@color/title_color"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText,UseCompatTextViewDrawableXml" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
 </RelativeLayout>

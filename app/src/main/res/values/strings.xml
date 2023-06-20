@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">SmartHome</string>
-    <string name="home">Home</string>
-    <string name="scan_name">实时操作</string>
+    <string name="home">Hello, Sir</string>
+    <string name="scan_name">Real-time operation</string>
     <string name="appwidget_text">EXAMPLE</string>
-    <string name="app_widget_description">This is an app widget description</string>
+    <string name="app_widget_description">Smart home widgets.</string>
+    <string name="light">Light</string>
+    <string name="air">Air</string>
+    <string name="display">Display</string>
+    <string name="projector">Projector</string>
 </resources>
