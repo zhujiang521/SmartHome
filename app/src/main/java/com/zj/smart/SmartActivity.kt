@@ -3,6 +3,7 @@ package com.zj.smart
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -45,6 +46,7 @@ class SmartActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier
                         .fillMaxSize()
+                        .background(color = MaterialTheme.colorScheme.background)
                         .navigationBarsPadding()
                         .statusBarsPadding(),
                     color = MaterialTheme.colorScheme.background
