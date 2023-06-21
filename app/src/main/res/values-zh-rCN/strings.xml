@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">智能家居</string>
+    <string name="home">你好，先生</string>
+    <string name="scan_name">实时操作</string>
+    <string name="appwidget_text">示例</string>
+    <string name="app_widget_description">智能家居小工具。</string>
+    <string name="light">光</string>
+    <string name="air">空调</string>
+    <string name="display">显示器</string>
+    <string name="projector">投影仪</string>
+    <string name="lock">门锁</string>
+    <string name="camera">照相机</string>
+    <string name="scale">身体脂肪秤</string>
+    <string name="cleaner">机器人吸尘器</string>
+    <string name="permission_title">申请权限</string>
+    <string name="permission_content">需要相机权限才能启用相机扫描。我可以要求吗？</string>
+    <string name="permission_cancel">取消</string>
+    <string name="permission_sure">当然</string>
+    <string name="details_name">设备详细信息</string>
+    <string name="device_details">这是一款智能设备，其实下面应该有具体的操作，但由于时间等关系，这还没有实现。</string>
+    <string name="widget_name">智能家居</string>
+</resources>
