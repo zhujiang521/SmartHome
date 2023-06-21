@@ -35,7 +35,7 @@ import com.zj.smart.view.FeatureThatRequiresLocationPermissions
 import com.zj.smart.view.VrView
 
 
-val list = mutableListOf<StaggeredGridData>().apply {
+val staggeredGridDataMutableList = mutableListOf<StaggeredGridData>().apply {
     add(StaggeredGridData(R.string.air, R.drawable.air))
     add(StaggeredGridData(R.string.display, R.drawable.display))
     add(StaggeredGridData(R.string.projector, R.drawable.projector))
@@ -90,7 +90,7 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
             .padding(start = 8.dp, end = 8.dp, top = 9.dp),
             columns = StaggeredGridCells.Fixed(2),
             content = {
-                list.forEachIndexed { _, staggeredGridData ->
+                staggeredGridDataMutableList.forEachIndexed { _, staggeredGridData ->
                     item {
                         SmartCard(staggeredGridData, toDetails)
                     }

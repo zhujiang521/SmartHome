@@ -18,4 +18,5 @@
     <string name="permission_sure">Sure</string>
     <string name="details_name">Device details</string>
     <string name="device_details">This is a smart device, in fact, there should be specific operations below, but due to time and other relations, this has not been implemented.</string>
+    <string name="widget_name">Smart Home</string>
 </resources>
