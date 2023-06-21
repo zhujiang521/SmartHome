@@ -1,10 +1,6 @@
 package com.zj.smart
 
-import android.app.Activity
 import android.os.Bundle
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -13,7 +9,6 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,6 +28,7 @@ class SmartActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        StatusBar(this).hide()
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             // Update the system bars to be translucent

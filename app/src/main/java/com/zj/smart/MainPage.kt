@@ -55,8 +55,7 @@ fun MainPage(toScan: () -> Unit) {
     val isJump = rememberSaveable { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
 
         TopAppBar(
@@ -81,15 +80,15 @@ fun MainPage(toScan: () -> Unit) {
             }
             showPermission.value = false
         }
-        VrView()
-        //先创建一个列表数据
-       
+
+        Card(modifier = Modifier.padding(horizontal = 16.dp)) {
+            VrView()
+        }
 
         //填充数据
-        LazyVerticalStaggeredGrid(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 8.dp, end = 8.dp, top = 9.dp),
+        LazyVerticalStaggeredGrid(modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 8.dp, end = 8.dp, top = 9.dp),
             columns = StaggeredGridCells.Fixed(2),
             content = {
                 list.forEachIndexed { _, staggeredGridData ->
@@ -113,10 +112,8 @@ private fun SmartCard(staggeredGridData: StaggeredGridData) {
             .padding(8.dp)
             .clickable {
 
-            },
-        colors = CardDefaults.cardColors(
-            containerColor = Color.White,
-            contentColor = Color.White
+            }, colors = CardDefaults.cardColors(
+            containerColor = Color.White, contentColor = Color.White
         )
     ) {
 
