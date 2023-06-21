@@ -20,6 +20,12 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.zj.smart.ui.theme.SmartHomeTheme
 
 class SmartActivity : ComponentActivity() {
+
+    companion object {
+        private const val NAVIGATION_MAIN = "main"
+        private const val NAVIGATION_SCAN = "scan"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -34,12 +40,13 @@ class SmartActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "main") {
-                        composable("main") {
+                    NavHost(navController = navController, startDestination = NAVIGATION_MAIN) {
+                        composable(NAVIGATION_MAIN) {
                             MainPage {
-                                navController.navigate("scan") }
+                                navController.navigate(NAVIGATION_SCAN)
+                            }
                         }
-                        composable("scan") { ScanView{ navController.popBackStack() } }
+                        composable(NAVIGATION_SCAN) { ScanPage { navController.popBackStack() } }
                     }
                 }
             }

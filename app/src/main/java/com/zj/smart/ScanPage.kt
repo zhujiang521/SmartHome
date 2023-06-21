@@ -20,7 +20,7 @@ import androidx.compose.ui.res.stringResource
 import com.zj.smart.view.PreviewView
 
 @Composable
-fun ScanView(back: () -> Unit) {
+fun ScanPage(back: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             //标题

@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalPermissionsApi::class)
 
-package com.zj.smart
+package com.zj.smart.view
 
 import android.content.Context
 import android.content.Intent
@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberPermissionState
-import com.zj.smart.view.ShowDialog
+import com.zj.smart.R
 
 @Composable
 fun FeatureThatRequiresLocationPermissions(hasPermission: () -> Unit) {
