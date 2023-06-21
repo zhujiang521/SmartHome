@@ -16,4 +16,6 @@
     <string name="permission_content">Camera permission is required to enable camera scanning. Can I request it?</string>
     <string name="permission_cancel">Cancel</string>
     <string name="permission_sure">Sure</string>
+    <string name="details_name">Device details</string>
+    <string name="device_details">This is a smart device, in fact, there should be specific operations below, but due to time and other relations, this has not been implemented.</string>
 </resources>

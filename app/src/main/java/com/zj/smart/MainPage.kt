@@ -49,9 +49,8 @@ val list = mutableListOf<StaggeredGridData>().apply {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MainPage(toScan: () -> Unit) {
+fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
     val showPermission = rememberSaveable { mutableStateOf(false) }
-
     val isJump = rememberSaveable { mutableStateOf(false) }
 
     Column(
@@ -93,7 +92,7 @@ fun MainPage(toScan: () -> Unit) {
             content = {
                 list.forEachIndexed { _, staggeredGridData ->
                     item {
-                        SmartCard(staggeredGridData)
+                        SmartCard(staggeredGridData, toDetails)
                     }
                 }
             })
@@ -102,16 +101,19 @@ fun MainPage(toScan: () -> Unit) {
 }
 
 data class StaggeredGridData(
-    val nameId: Int, val resId: Int
+    val nameId: Int, val resId: Int,val detailsId : Int = R.string.device_details
 )
 
 @Composable
-private fun SmartCard(staggeredGridData: StaggeredGridData) {
+private fun SmartCard(
+    staggeredGridData: StaggeredGridData,
+    toDetails: (StaggeredGridData) -> Unit
+) {
     Card(
         modifier = Modifier
             .padding(8.dp)
             .clickable {
-
+                toDetails(staggeredGridData)
             }, colors = CardDefaults.cardColors(
             containerColor = Color.White, contentColor = Color.White
         )
