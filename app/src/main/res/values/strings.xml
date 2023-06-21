@@ -8,4 +8,9 @@
     <string name="air">Air</string>
     <string name="display">Display</string>
     <string name="projector">Projector</string>
+    <string name="title_activity_smart">SmartActivity</string>
+    <string name="permission_title">权限申请</string>
+    <string name="permission_content">开启相机扫描需要相机权限，是否允许申请？</string>
+    <string name="permission_cancel">取消</string>
+    <string name="permission_sure">确定</string>
 </resources>
