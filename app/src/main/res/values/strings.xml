@@ -2,7 +2,6 @@
     <string name="app_name">SmartHome</string>
     <string name="home">Hello, Sir</string>
     <string name="scan_name">Real-time operation</string>
-    <string name="appwidget_text">EXAMPLE</string>
     <string name="app_widget_description">Smart home widgets.</string>
     <string name="light">Light</string>
     <string name="air">Air</string>
