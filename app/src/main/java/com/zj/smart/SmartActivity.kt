@@ -32,7 +32,6 @@ class SmartActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        StatusBar(this).hide()
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             // Update the system bars to be translucent
