@@ -22,7 +22,6 @@
         <activity
             android:name=".SmartActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SmartHome"
             tools:ignore="LockedOrientationActivity">

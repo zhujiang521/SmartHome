@@ -8,6 +8,10 @@
     <string name="air">Air</string>
     <string name="display">Display</string>
     <string name="projector">Projector</string>
+    <string name="lock">Door lock</string>
+    <string name="camera">Camera</string>
+    <string name="scale">Body fat scale</string>
+    <string name="cleaner">Robot vacuum cleaner</string>
     <string name="permission_title">Apply for permission</string>
     <string name="permission_content">Camera permission is required to enable camera scanning. Can I request it?</string>
     <string name="permission_cancel">Cancel</string>
