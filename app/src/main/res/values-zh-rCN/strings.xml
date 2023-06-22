@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">智能家居</string>
+    <string name="app_name">享家</string>
     <string name="home">你好，先生</string>
     <string name="scan_name">实时操作</string>
     <string name="app_widget_description">智能家居小工具。</string>

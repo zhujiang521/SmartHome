@@ -58,6 +58,7 @@ val staggeredGridDataMutableList = mutableListOf<StaggeredGridData>().apply {
 fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
     val showPermission = rememberSaveable { mutableStateOf(false) }
     val isJump = rememberSaveable { mutableStateOf(false) }
+    val alertDialog = rememberSaveable { mutableStateOf(false) }
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -75,8 +76,8 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
             },
         )
 
-        if (showPermission.value) {
-            FeatureThatRequiresLocationPermissions {
+        if (showPermission.value || alertDialog.value) {
+            FeatureThatRequiresLocationPermissions(alertDialog) {
                 if (!isJump.value) {
                     toScan()
                     isJump.value = false

@@ -9,8 +9,7 @@ import android.provider.Settings
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -19,9 +18,8 @@ import com.google.accompanist.permissions.rememberPermissionState
 import com.zj.smart.R
 
 @Composable
-fun FeatureThatRequiresLocationPermissions(hasPermission: () -> Unit) {
+fun FeatureThatRequiresLocationPermissions(alertDialog: MutableState<Boolean>, hasPermission: () -> Unit) {
     val context = LocalContext.current
-    val alertDialog = rememberSaveable { mutableStateOf(false) }
     // 权限状态
     val cameraPermissionState = rememberPermissionState(
         permission = android.Manifest.permission.CAMERA
