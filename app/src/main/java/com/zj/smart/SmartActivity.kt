@@ -62,11 +62,11 @@ class SmartActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
+                    NavHostController(navController)
                     val value = staggeredDataStatus.value
                     if (value != NAVIGATION_MAIN) {
                         navController.navigate(value)
                     }
-                    NavHostController(navController)
                 }
             }
         }
