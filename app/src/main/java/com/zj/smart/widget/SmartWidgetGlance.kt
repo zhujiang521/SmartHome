@@ -39,6 +39,10 @@ import com.zj.smart.widget.theme.GlanceTextStyles
 
 class SmartWidgetGlance : GlanceAppWidget() {
 
+    companion object {
+        const val STAGGERED_GRID_DATA = "STAGGERED_GRID_DATA"
+    }
+
     override val sizeMode: SizeMode = SizeMode.Exact
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
@@ -77,7 +81,8 @@ class SmartWidgetGlance : GlanceAppWidget() {
     private fun SmartGlanceCard(context: Context, staggeredGridData: StaggeredGridData) {
         Column {
             Row(
-                modifier = GlanceModifier.padding(8.dp).clickable(onClick = openSmartHome(context))
+                modifier = GlanceModifier.padding(8.dp)
+                    .clickable(onClick = openSmartHome(context, staggeredGridData))
                     .cornerRadius(10.dp)
                     .background(GlanceTheme.colors.onTertiary),
                 horizontalAlignment = Alignment.Start,
@@ -116,10 +121,12 @@ class SmartWidgetGlance : GlanceAppWidget() {
 
     }
 
-    private fun openSmartHome(context: Context): Action {
+    private fun openSmartHome(context: Context, staggeredGridData: StaggeredGridData): Action {
         // actionStartActivity is the preferred way to start activities.
         return actionStartActivity(
-            Intent(context, SmartActivity::class.java)
+            Intent(context, SmartActivity::class.java).apply {
+                putExtra(STAGGERED_GRID_DATA, staggeredGridData)
+            }
         )
     }
 

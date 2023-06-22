@@ -2,6 +2,7 @@
 
 package com.zj.smart
 
+import android.os.Parcelable
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -33,7 +34,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zj.smart.view.FeatureThatRequiresLocationPermissions
 import com.zj.smart.view.VrView
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
+data class StaggeredGridData(
+    val nameId: Int, val resId: Int, val detailsId: Int = R.string.device_details
+) : Parcelable
 
 val staggeredGridDataMutableList = mutableListOf<StaggeredGridData>().apply {
     add(StaggeredGridData(R.string.air, R.drawable.air))
@@ -56,13 +62,12 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-
         TopAppBar(
-            //标题
+            // 标题
             title = {
                 Text(text = stringResource(id = R.string.home))
             },
-            //其它按钮
+            // 其它按钮
             actions = {
                 IconButton(onClick = { showPermission.value = true }) {
                     Icon(imageVector = Icons.Default.Search, contentDescription = null)
@@ -99,10 +104,6 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
 
     }
 }
-
-data class StaggeredGridData(
-    val nameId: Int, val resId: Int, val detailsId: Int = R.string.device_details
-)
 
 @Composable
 private fun SmartCard(

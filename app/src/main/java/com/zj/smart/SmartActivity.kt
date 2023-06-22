@@ -1,5 +1,7 @@
 package com.zj.smart
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,10 +12,13 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,6 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.zj.smart.ui.theme.SmartHomeTheme
+import com.zj.smart.widget.SmartWidgetGlance
 
 class SmartActivity : ComponentActivity() {
 
@@ -31,9 +37,13 @@ class SmartActivity : ComponentActivity() {
         private const val NAVIGATION_ROUTE_URL = "details_url"
     }
 
+    private val staggeredDataStatus = mutableStateOf(NAVIGATION_MAIN)
+
+    @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
+        disposeIntent(intent)
         setContent {
             // Update the system bars to be translucent
             val systemUiController = rememberSystemUiController()
@@ -52,32 +62,64 @@ class SmartActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = NAVIGATION_MAIN) {
-                        composable(NAVIGATION_MAIN) {
-                            MainPage({ navController.navigate(NAVIGATION_SCAN) }) { staggeredGridData ->
-                                val result =
-                                    "${staggeredGridData.nameId}-${staggeredGridData.resId}"
-                                navController.navigate("$NAVIGATION_DETAILS/$result")
-                            }
-                        }
-                        composable(NAVIGATION_SCAN) { ScanPage { navController.popBackStack() } }
-                        composable(
-                            "${NAVIGATION_DETAILS}/{$NAVIGATION_ROUTE_URL}",
-                            arguments = listOf(navArgument(NAVIGATION_ROUTE_URL) {
-                                type = NavType.StringType
-                            }),
-                        ) { backStackEntry ->
-                            val arguments = requireNotNull(backStackEntry.arguments)
-                            val parcelable = arguments.getString(NAVIGATION_ROUTE_URL)
-                                ?: "${R.string.air}-${R.drawable.air}"
-                            val split = parcelable.split("-")
-                            DetailsPage(StaggeredGridData(split[0].toInt(), split[1].toInt())) {
-                                navController.popBackStack()
-                            }
-                        }
+                    val value = staggeredDataStatus.value
+                    if (value != NAVIGATION_MAIN) {
+                        navController.navigate(value)
                     }
+                    NavHostController(navController)
                 }
             }
+        }
+    }
+
+    @Composable
+    private fun NavHostController(navController: NavHostController) {
+        NavHost(
+            navController = navController,
+            startDestination = NAVIGATION_MAIN
+        ) {
+            composable(NAVIGATION_MAIN) {
+                MainPage({ navController.navigate(NAVIGATION_SCAN) }) { staggeredGridData ->
+                    val result =
+                        "${staggeredGridData.nameId}-${staggeredGridData.resId}"
+                    navController.navigate("$NAVIGATION_DETAILS/$result")
+                }
+            }
+            composable(NAVIGATION_SCAN) { ScanPage { navController.popBackStack() } }
+            composable(
+                "${NAVIGATION_DETAILS}/{$NAVIGATION_ROUTE_URL}",
+                arguments = listOf(navArgument(NAVIGATION_ROUTE_URL) {
+                    type = NavType.StringType
+                }),
+            ) { backStackEntry ->
+                val arguments = requireNotNull(backStackEntry.arguments)
+                val parcelable = arguments.getString(NAVIGATION_ROUTE_URL)
+                    ?: "${R.string.air}-${R.drawable.air}"
+                val split = parcelable.split("-")
+                DetailsPage(StaggeredGridData(split[0].toInt(), split[1].toInt())) {
+                    navController.popBackStack()
+                }
+            }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        disposeIntent(intent)
+    }
+
+    @SuppressLint("NewApi")
+    private fun disposeIntent(intent: Intent?) {
+        val staggeredData = intent?.getParcelableExtra(
+            SmartWidgetGlance.STAGGERED_GRID_DATA,
+            StaggeredGridData::class.java
+        )
+        staggeredDataStatus.value = if (staggeredData == null) {
+            NAVIGATION_MAIN
+        } else {
+            val result =
+                "${staggeredData.nameId}-${staggeredData.resId}"
+            "$NAVIGATION_DETAILS/$result"
         }
     }
 
