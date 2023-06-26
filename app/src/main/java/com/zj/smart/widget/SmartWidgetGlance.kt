@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.ui.unit.dp
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
 import androidx.glance.Image
 import androidx.glance.ImageProvider
+import androidx.glance.LocalSize
 import androidx.glance.action.Action
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
@@ -17,6 +19,7 @@ import androidx.glance.appwidget.SizeMode
 import androidx.glance.appwidget.action.actionStartActivity
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.lazy.LazyColumn
+import androidx.glance.appwidget.lazy.items
 import androidx.glance.appwidget.provideContent
 import androidx.glance.background
 import androidx.glance.layout.Alignment
@@ -57,17 +60,19 @@ class SmartWidgetGlance : GlanceAppWidget() {
                     modifier = GlanceModifier.fillMaxSize().background(GlanceTheme.colors.surface),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    Text(
-                        text = context.getString(R.string.widget_name),
-                        modifier = GlanceModifier.padding(10.dp),
-                        style = GlanceTextStyles.bodyLarge.copy(color = GlanceTheme.colors.onBackground)
-                    )
-                    LazyColumn(
-                        modifier = GlanceModifier.fillMaxSize().padding(horizontal = 10.dp)
-                    ) {
-                        staggeredGridDataMutableList.forEach {
-                            item {
-                                SmartGlanceCard(context, it)
+                    // set key for each size so that the ontogglebookmark lambda is called only once for the
+                    // active size.
+                    key(LocalSize.current) {
+                        Text(
+                            text = context.getString(R.string.widget_name),
+                            modifier = GlanceModifier.padding(10.dp),
+                            style = GlanceTextStyles.bodyLarge.copy(color = GlanceTheme.colors.onBackground)
+                        )
+                        LazyColumn(
+                            modifier = GlanceModifier.fillMaxSize().padding(horizontal = 10.dp)
+                        ) {
+                            items(staggeredGridDataMutableList) { data ->
+                                SmartGlanceCard(context, data)
                             }
                         }
                     }
