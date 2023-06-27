@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
@@ -96,10 +97,8 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
             .padding(start = 8.dp, end = 8.dp, top = 9.dp),
             columns = StaggeredGridCells.Fixed(2),
             content = {
-                staggeredGridDataMutableList.forEachIndexed { _, staggeredGridData ->
-                    item {
-                        SmartCard(staggeredGridData, toDetails)
-                    }
+                items(staggeredGridDataMutableList) {
+                    SmartCard(it, toDetails)
                 }
             })
 
@@ -121,7 +120,6 @@ private fun SmartCard(
             contentColor = MaterialTheme.colorScheme.onTertiary
         )
     ) {
-
         Image(
             painter = painterResource(id = staggeredGridData.resId),
             contentDescription = stringResource(id = staggeredGridData.nameId)
