@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import com.zj.smart.view.FeatureThatRequiresLocationPermissions
 import com.zj.smart.view.VrView
 import kotlinx.parcelize.Parcelize
+import kotlin.random.Random
 
 @Parcelize
 data class StaggeredGridData(
@@ -53,6 +54,9 @@ val staggeredGridDataMutableList = mutableListOf<StaggeredGridData>().apply {
     add(StaggeredGridData(R.string.cleaner, R.drawable.cleaner))
 }
 
+private val resIds = arrayOf(R.drawable.new_home, R.drawable.new_room)
+
+private val random = Random(2)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -88,8 +92,9 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
         }
 
         Card(modifier = Modifier.padding(horizontal = 16.dp)) {
-            VrView()
+            VrView(resIds[random.nextInt(2) - 1])
         }
+
 
         //填充数据
         LazyVerticalStaggeredGrid(modifier = Modifier
@@ -107,8 +112,7 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
 
 @Composable
 private fun SmartCard(
-    staggeredGridData: StaggeredGridData,
-    toDetails: (StaggeredGridData) -> Unit
+    staggeredGridData: StaggeredGridData, toDetails: (StaggeredGridData) -> Unit
 ) {
     Card(
         modifier = Modifier
