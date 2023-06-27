@@ -2,6 +2,7 @@ package com.zj.smart
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -108,18 +109,25 @@ class SmartActivity : ComponentActivity() {
         disposeIntent(intent)
     }
 
-    @SuppressLint("NewApi")
     private fun disposeIntent(intent: Intent?) {
-        val staggeredData = intent?.getParcelableExtra(
-            SmartWidgetGlance.STAGGERED_GRID_DATA,
-            StaggeredGridData::class.java
-        )
-        staggeredDataStatus.value = if (staggeredData == null) {
-            NAVIGATION_MAIN
-        } else {
-            val result =
-                "${staggeredData.nameId}-${staggeredData.resId}"
-            "$NAVIGATION_DETAILS/$result"
+        try {
+            val staggeredData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                intent?.getParcelableExtra(
+                    SmartWidgetGlance.STAGGERED_GRID_DATA,
+                    StaggeredGridData::class.java
+                )
+            } else {
+                intent?.getParcelableExtra(SmartWidgetGlance.STAGGERED_GRID_DATA)
+            }
+            staggeredDataStatus.value = if (staggeredData == null) {
+                NAVIGATION_MAIN
+            } else {
+                val result =
+                    "${staggeredData.nameId}-${staggeredData.resId}"
+                "$NAVIGATION_DETAILS/$result"
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
