@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.lerp
 
 /**
- * This indicator syncs up a [TabRow] or [ScrollableTabRow] tab indicator with a
+ * This indicator syncs up a TabRow or ScrollableTabRow tab indicator with a
  * [androidx.compose.foundation.pager.HorizontalPager] or
  * [androidx.compose.foundation.pager.VerticalPager].
  */

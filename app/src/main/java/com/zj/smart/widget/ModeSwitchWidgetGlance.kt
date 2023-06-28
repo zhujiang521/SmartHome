@@ -2,8 +2,6 @@ package com.zj.smart.widget
 
 import android.content.Context
 import android.os.Build
-import android.os.Vibrator
-import android.os.VibratorManager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.key
@@ -57,7 +55,7 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
                     modifier = GlanceModifier.fillMaxSize().background(GlanceTheme.colors.surface),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    // set key for each size so that the ontogglebookmark lambda is called only once for the
+                    // set key for each size so that the onToggleBookmark lambda is called only once for the
                     // active size.
                     key(LocalSize.current) {
                         Text(

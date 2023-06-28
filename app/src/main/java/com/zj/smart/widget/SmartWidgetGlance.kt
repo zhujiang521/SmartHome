@@ -60,7 +60,7 @@ class SmartWidgetGlance : GlanceAppWidget() {
                     modifier = GlanceModifier.fillMaxSize().background(GlanceTheme.colors.surface),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    // set key for each size so that the ontogglebookmark lambda is called only once for the
+                    // set key for each size so that the onToggleBookmark lambda is called only once for the
                     // active size.
                     key(LocalSize.current) {
                         Text(

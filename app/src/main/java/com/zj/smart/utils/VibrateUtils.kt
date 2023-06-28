@@ -3,20 +3,29 @@ package com.zj.smart.utils
 import android.content.Context
 import android.content.Context.VIBRATOR_SERVICE
 import android.os.Build
+import android.os.VibrationEffect
+import android.os.VibrationEffect.DEFAULT_AMPLITUDE
 import android.os.Vibrator
 import android.os.VibratorManager
 
-
+/**
+ * 震动工具类
+ */
 object VibrateUtils {
 
-    private var vib :Vibrator? = null
+    private var vib: Vibrator? = null
 
-    //震动milliseconds毫秒
+    /**
+     * 震动 milliseconds 毫秒
+     */
     fun vibrate(context: Context, milliseconds: Long) {
         initVibrator(context)
-        vib?.vibrate(milliseconds)
+        vib?.vibrate(VibrationEffect.createOneShot(milliseconds, DEFAULT_AMPLITUDE))
     }
 
+    /**
+     * 初始化震动
+     */
     fun initVibrator(context: Context) {
         if (vib != null) return
         vib = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -35,12 +44,12 @@ object VibrateUtils {
      */
     fun vibrate(context: Context, pattern: LongArray, repeat: Int) {
         initVibrator(context)
-        vib?.vibrate(pattern, repeat)
+        vib?.vibrate(VibrationEffect.createWaveform(pattern, repeat))
     }
 
 
     //取消震动
-    fun virateCancle(context: Context) {
+    fun vibratorCancel(context: Context) {
         initVibrator(context)
         try {
             vib?.cancel()
