@@ -75,7 +75,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
     implementation "com.google.accompanist:accompanist-permissions:$accompanist_version"
 
-    def camera_version = "1.1.0-beta02"
+    def camera_version = "1.2.3"
     implementation "androidx.camera:camera-core:$camera_version"
     // CameraX Camera2 extensions[可选]拓展库可实现人像、HDR、夜间和美颜、滤镜但依赖于OEM
     implementation "androidx.camera:camera-camera2:$camera_version"

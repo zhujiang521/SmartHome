@@ -52,7 +52,8 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
                 }
             ) {
                 Column(
-                    modifier = GlanceModifier.fillMaxSize().background(GlanceTheme.colors.surface),
+                    modifier = GlanceModifier.fillMaxSize().background(GlanceTheme.colors.surface)
+                        .cornerRadius(12.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     // set key for each size so that the onToggleBookmark lambda is called only once for the
