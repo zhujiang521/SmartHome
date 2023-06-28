@@ -37,11 +37,11 @@ import com.zj.smart.widget.theme.GlanceTextStyles
 
 class ModeSwitchWidgetGlance : GlanceAppWidget() {
 
-    private val modeList = listOf("普通模式", "嗨放模式", "睡眠模式", "安放模式", "工作模式")
+    private val modeList =
+        listOf(R.string.mode1, R.string.mode2, R.string.mode3, R.string.mode4, R.string.mode5)
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-
             GlanceTheme(
                 colors = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     GlanceTheme.colors
@@ -65,22 +65,26 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
                             ),
                             style = GlanceTextStyles.bodyLarge.copy(color = GlanceTheme.colors.onBackground)
                         )
-                        val checkIndex = rememberSaveable { mutableStateOf(0) }
-
-                        LazyVerticalGrid(
-                            modifier = GlanceModifier.fillMaxSize().padding(5.dp),
-                            gridCells = GridCells.Fixed(2)
-                        ) {
-                            itemsIndexed(modeList) { index, data ->
-                                ModeItem(checkIndex, index, data)
-                            }
-                        }
+                        ModeGrid(context)
                     }
 
                 }
             }
         }
+    }
 
+    @Composable
+    private fun ModeGrid(context: Context) {
+        val checkIndex = rememberSaveable { mutableStateOf(0) }
+
+        LazyVerticalGrid(
+            modifier = GlanceModifier.fillMaxSize().padding(5.dp),
+            gridCells = GridCells.Fixed(2)
+        ) {
+            itemsIndexed(modeList) { index, data ->
+                ModeItem(checkIndex, index, context.getString(data))
+            }
+        }
     }
 
     @Composable

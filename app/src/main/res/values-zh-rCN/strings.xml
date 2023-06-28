@@ -25,4 +25,11 @@
     <string name="pet_content3">滤芯</string>
     <string name="house_living_room">客厅</string>
     <string name="house_bedroom">卧室</string>
+    <string name="mode1">普通模式</string>
+    <string name="mode2">嗨放模式</string>
+    <string name="mode3">睡眠模式</string>
+    <string name="mode4">安放模式</string>
+    <string name="mode5">工作模式</string>
+    <string name="smart_widget">设备列表</string>
+    <string name="mode_widget">模式设置</string>
 </resources>

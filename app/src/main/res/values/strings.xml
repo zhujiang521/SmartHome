@@ -25,4 +25,11 @@
     <string name="pet_content3">Filter element</string>
     <string name="house_living_room">Living room</string>
     <string name="house_bedroom">Bedroom</string>
+    <string name="mode1">Ordinary mode</string>
+    <string name="mode2">High play mode</string>
+    <string name="mode3">Sleep mode</string>
+    <string name="mode4">Placement mode</string>
+    <string name="mode5">Working mode</string>
+    <string name="smart_widget">Device list</string>
+    <string name="mode_widget">Mode setting</string>
 </resources>
