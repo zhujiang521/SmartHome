@@ -23,4 +23,6 @@
     <string name="pet_content1">萌宠动态</string>
     <string name="pet_content2">自动换水</string>
     <string name="pet_content3">滤芯</string>
+    <string name="house_living_room">客厅</string>
+    <string name="house_bedroom">卧室</string>
 </resources>

@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
@@ -22,10 +24,14 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,8 +41,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zj.smart.view.FeatureThatRequiresLocationPermissions
 import com.zj.smart.view.VrView
+import com.zj.smart.view.pagerTabIndicatorOffset
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
-import kotlin.random.Random
 
 @Parcelize
 data class StaggeredGridData(
@@ -55,8 +62,8 @@ val staggeredGridDataMutableList = mutableListOf<StaggeredGridData>().apply {
 }
 
 private val resIds = arrayOf(R.drawable.new_home, R.drawable.new_room)
+private val pages = arrayOf(R.string.house_living_room, R.string.house_bedroom)
 
-private val random = Random(2)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -90,10 +97,7 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
             }
             showPermission.value = false
         }
-
-        Card(modifier = Modifier.padding(horizontal = 16.dp)) {
-            VrView(resIds[random.nextInt(2) - 1])
-        }
+        VrPager()
 
 
         //填充数据
@@ -107,6 +111,42 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
                 }
             })
 
+    }
+}
+
+@Composable
+@OptIn(ExperimentalFoundationApi::class)
+private fun VrPager() {
+    val scope = rememberCoroutineScope()
+    val pagerState = rememberPagerState()
+
+    HorizontalPager(state = pagerState, pageCount = 2) { page ->
+        Card(modifier = Modifier.padding(horizontal = 16.dp)) {
+            VrView(resIds[page])
+        }
+    }
+    TabRow(
+        // Our selected tab is our current page
+        selectedTabIndex = pagerState.currentPage,
+        // override the indicator, using the provided pagerTabIndicatorOffset modifier
+        indicator = { tabPositions ->
+            TabRowDefaults.Indicator(
+                Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
+            )
+        }) {
+        // Add tabs for all of our pages
+        pages.forEachIndexed { index, titleId ->
+            Tab(
+                text = { Text(stringResource(id = titleId)) },
+                selected = pagerState.currentPage == index,
+                onClick = {
+                    // Later, scroll to page 2
+                    scope.launch {
+                        pagerState.scrollToPage(index)
+                    }
+                },
+            )
+        }
     }
 }
 

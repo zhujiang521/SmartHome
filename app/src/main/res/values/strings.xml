@@ -23,4 +23,6 @@
     <string name="pet_content1">Pet dynamics</string>
     <string name="pet_content2">Automatic water change</string>
     <string name="pet_content3">Filter element</string>
+    <string name="house_living_room">Living room</string>
+    <string name="house_bedroom">Bedroom</string>
 </resources>
