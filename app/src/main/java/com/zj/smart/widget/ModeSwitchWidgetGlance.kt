@@ -2,6 +2,8 @@ package com.zj.smart.widget
 
 import android.content.Context
 import android.os.Build
+import android.os.Vibrator
+import android.os.VibratorManager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.key
@@ -32,6 +34,7 @@ import androidx.glance.layout.padding
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import com.zj.smart.R
+import com.zj.smart.utils.VibrateUtils
 import com.zj.smart.widget.theme.GlanceColorScheme
 import com.zj.smart.widget.theme.GlanceTextStyles
 
@@ -41,6 +44,7 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
         listOf(R.string.mode1, R.string.mode2, R.string.mode3, R.string.mode4, R.string.mode5)
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
+        VibrateUtils.initVibrator(context)
         provideContent {
             GlanceTheme(
                 colors = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -82,13 +86,13 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
             gridCells = GridCells.Fixed(2)
         ) {
             itemsIndexed(modeList) { index, data ->
-                ModeItem(checkIndex, index, context.getString(data))
+                ModeItem(context, checkIndex, index, data)
             }
         }
     }
 
     @Composable
-    private fun ModeItem(checkIndex: MutableState<Int>, index: Int, data: String) {
+    private fun ModeItem(context: Context, checkIndex: MutableState<Int>, index: Int, data: Int) {
         Box(
             modifier = GlanceModifier.fillMaxWidth().height(70.dp)
                 .padding(5.dp)
@@ -102,12 +106,13 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
                     )
                     .clickable {
                         checkIndex.value = index
+                        VibrateUtils.vibrate(context, 100L)
                     },
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = data,
+                    text = context.getString(data),
                     maxLines = 2,
                     style = TextStyle(fontSize = 13.sp, color = GlanceTheme.colors.onBackground)
                 )
