@@ -1,5 +1,6 @@
 package com.zj.smart.utils
 
+import android.content.res.Resources
 import android.os.Build
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
@@ -30,3 +31,5 @@ fun GlanceModifier.appWidgetInnerCornerRadius(): GlanceModifier {
 fun stringResource(@StringRes id: Int): String {
     return LocalContext.current.getString(id)
 }
+
+val Float.toPx get() = this * Resources.getSystem().displayMetrics.density
