@@ -15,7 +15,6 @@ import androidx.glance.GlanceTheme
 import androidx.glance.LocalSize
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
-import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.lazy.GridCells
 import androidx.glance.appwidget.lazy.LazyVerticalGrid
 import androidx.glance.appwidget.lazy.itemsIndexed
@@ -33,15 +32,30 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import com.zj.smart.R
 import com.zj.smart.utils.VibrateUtils
+import com.zj.smart.utils.appWidgetBackgroundCornerRadius
+import com.zj.smart.utils.appWidgetInnerCornerRadius
+import com.zj.smart.utils.stringResource
 import com.zj.smart.widget.theme.GlanceColorScheme
 import com.zj.smart.widget.theme.GlanceTextStyles
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 class ModeSwitchWidgetGlance : GlanceAppWidget() {
 
     private val modeList =
         listOf(R.string.mode1, R.string.mode2, R.string.mode3, R.string.mode4, R.string.mode5)
 
+    private suspend fun getName(): String {
+        val name = withContext(Dispatchers.IO) {
+            delay(1000L)
+            "Home"
+        }
+        return name
+    }
+
     override suspend fun provideGlance(context: Context, id: GlanceId) {
+        val name = getName()
         provideContent {
             GlanceTheme(
                 colors = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -52,14 +66,14 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
             ) {
                 Column(
                     modifier = GlanceModifier.fillMaxSize().background(GlanceTheme.colors.surface)
-                        .cornerRadius(12.dp),
+                        .appWidgetBackgroundCornerRadius(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     // set key for each size so that the onToggleBookmark lambda is called only once for the
                     // active size.
                     key(LocalSize.current) {
                         Text(
-                            text = context.getString(R.string.widget_name),
+                            text = "${stringResource(id = R.string.widget_name)} $name",
                             modifier = GlanceModifier.padding(
                                 top = 10.dp,
                                 start = 10.dp,
@@ -97,7 +111,7 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
         ) {
             Row(
                 modifier = GlanceModifier.fillMaxSize()
-                    .cornerRadius(10.dp)
+                    .appWidgetInnerCornerRadius()
                     .background(
                         if (index == checkIndex.value) GlanceTheme.colors.errorContainer
                         else GlanceTheme.colors.tertiaryContainer
@@ -112,7 +126,7 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = context.getString(data),
+                    text = stringResource(data),
                     maxLines = 2,
                     style = TextStyle(fontSize = 13.sp, color = GlanceTheme.colors.onBackground)
                 )

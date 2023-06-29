@@ -37,6 +37,9 @@ import com.zj.smart.R
 import com.zj.smart.SmartActivity
 import com.zj.smart.StaggeredGridData
 import com.zj.smart.staggeredGridDataMutableList
+import com.zj.smart.utils.appWidgetBackgroundCornerRadius
+import com.zj.smart.utils.appWidgetInnerCornerRadius
+import com.zj.smart.utils.stringResource
 import com.zj.smart.widget.theme.GlanceColorScheme
 import com.zj.smart.widget.theme.GlanceTextStyles
 
@@ -58,14 +61,14 @@ class SmartWidgetGlance : GlanceAppWidget() {
             ) {
                 Column(
                     modifier = GlanceModifier.fillMaxSize().background(GlanceTheme.colors.surface)
-                        .cornerRadius(12.dp),
+                        .appWidgetBackgroundCornerRadius(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     // set key for each size so that the onToggleBookmark lambda is called only once for the
                     // active size.
                     key(LocalSize.current) {
                         Text(
-                            text = context.getString(R.string.widget_name),
+                            text = stringResource(id = R.string.widget_name),
                             modifier = GlanceModifier.padding(10.dp),
                             style = GlanceTextStyles.bodyLarge.copy(color = GlanceTheme.colors.onBackground)
                         )
@@ -89,7 +92,7 @@ class SmartWidgetGlance : GlanceAppWidget() {
             Row(
                 modifier = GlanceModifier.padding(8.dp)
                     .clickable(onClick = openSmartHome(context, staggeredGridData))
-                    .cornerRadius(10.dp)
+                    .appWidgetInnerCornerRadius()
                     .background(GlanceTheme.colors.onTertiary),
                 horizontalAlignment = Alignment.Start,
                 verticalAlignment = Alignment.CenterVertically,
@@ -107,13 +110,13 @@ class SmartWidgetGlance : GlanceAppWidget() {
                 ) {
 
                     Text(
-                        text = context.getString(staggeredGridData.nameId),
+                        text = stringResource(id = staggeredGridData.nameId),
                         maxLines = 1,
                         style = GlanceTextStyles.bodyLarge.copy(color = GlanceTheme.colors.onBackground)
                     )
                     Spacer(modifier = GlanceModifier.height(4.dp))
                     Text(
-                        text = context.getString(staggeredGridData.detailsId),
+                        text = stringResource(id = staggeredGridData.detailsId),
                         style = GlanceTextStyles.bodySmall.copy(color = GlanceTheme.colors.onBackground),
                         maxLines = 3
                     )
