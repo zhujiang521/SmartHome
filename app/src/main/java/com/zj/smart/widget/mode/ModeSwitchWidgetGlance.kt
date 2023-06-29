@@ -1,4 +1,4 @@
-package com.zj.smart.widget
+package com.zj.smart.widget.mode
 
 import android.content.Context
 import android.os.Build

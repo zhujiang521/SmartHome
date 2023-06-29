@@ -1,8 +1,9 @@
-package com.zj.smart.widget
+package com.zj.smart.widget.smart
 
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.ui.unit.dp
@@ -51,6 +52,8 @@ class SmartWidgetGlance : GlanceAppWidget() {
 
     override val sizeMode: SizeMode = SizeMode.Exact
     override suspend fun provideGlance(context: Context, id: GlanceId) {
+        Log.i("zhujiang123", "ScanPage333: ${staggeredGridDataMutableList.size}")
+
         provideContent {
             GlanceTheme(
                 colors = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
