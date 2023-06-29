@@ -42,7 +42,6 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
         listOf(R.string.mode1, R.string.mode2, R.string.mode3, R.string.mode4, R.string.mode5)
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
-        VibrateUtils.initVibrator(context)
         provideContent {
             GlanceTheme(
                 colors = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -79,7 +78,7 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
     @Composable
     private fun ModeGrid(context: Context) {
         val checkIndex = rememberSaveable { mutableStateOf(0) }
-
+        VibrateUtils.initVibrator(context)
         LazyVerticalGrid(
             modifier = GlanceModifier.fillMaxSize().padding(5.dp),
             gridCells = GridCells.Fixed(2)
@@ -104,8 +103,10 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
                         else GlanceTheme.colors.tertiaryContainer
                     )
                     .clickable {
-                        checkIndex.value = index
-                        VibrateUtils.vibrate(context, 100L)
+                        if (checkIndex.value != index) {
+                            checkIndex.value = index
+                            VibrateUtils.vibrate(context, 100L)
+                        }
                     },
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalAlignment = Alignment.CenterVertically,
