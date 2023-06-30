@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="system_app_widget_background_radius">16dp</dimen>
+    <!-- System-provided radius for inner views on app widgets. The resolved value of this resource may change at runtime. -->
+    <dimen name="system_app_widget_inner_radius">8dp</dimen>
+
+</resources>

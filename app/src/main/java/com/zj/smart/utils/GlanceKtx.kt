@@ -8,21 +8,13 @@ import androidx.compose.ui.unit.dp
 import androidx.glance.GlanceModifier
 import androidx.glance.LocalContext
 import androidx.glance.appwidget.cornerRadius
+import com.zj.smart.R
 
 fun GlanceModifier.appWidgetBackgroundCornerRadius(): GlanceModifier {
     if (Build.VERSION.SDK_INT >= 31) {
         cornerRadius(android.R.dimen.system_app_widget_background_radius)
     } else {
         cornerRadius(16.dp)
-    }
-    return this
-}
-
-fun GlanceModifier.appWidgetInnerCornerRadius(): GlanceModifier {
-    if (Build.VERSION.SDK_INT >= 31) {
-        cornerRadius(android.R.dimen.system_app_widget_inner_radius)
-    } else {
-        cornerRadius(8.dp)
     }
     return this
 }

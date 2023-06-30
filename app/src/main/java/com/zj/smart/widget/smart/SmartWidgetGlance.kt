@@ -38,7 +38,6 @@ import com.zj.smart.SmartActivity
 import com.zj.smart.StaggeredGridData
 import com.zj.smart.staggeredGridDataMutableList
 import com.zj.smart.utils.appWidgetBackgroundCornerRadius
-import com.zj.smart.utils.appWidgetInnerCornerRadius
 import com.zj.smart.utils.stringResource
 import com.zj.smart.widget.theme.GlanceColorScheme
 import com.zj.smart.widget.theme.GlanceTextStyles
@@ -92,7 +91,7 @@ class SmartWidgetGlance : GlanceAppWidget() {
             Row(
                 modifier = GlanceModifier.padding(8.dp)
                     .clickable(onClick = openSmartHome(context, staggeredGridData))
-                    .appWidgetInnerCornerRadius()
+                    .cornerRadius(10.dp)
                     .background(GlanceTheme.colors.onTertiary),
                 horizontalAlignment = Alignment.Start,
                 verticalAlignment = Alignment.CenterVertically,

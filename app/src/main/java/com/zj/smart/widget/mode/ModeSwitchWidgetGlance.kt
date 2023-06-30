@@ -15,6 +15,7 @@ import androidx.glance.GlanceTheme
 import androidx.glance.LocalSize
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.lazy.GridCells
 import androidx.glance.appwidget.lazy.LazyVerticalGrid
 import androidx.glance.appwidget.lazy.itemsIndexed
@@ -33,7 +34,6 @@ import androidx.glance.text.TextStyle
 import com.zj.smart.R
 import com.zj.smart.utils.VibrateUtils
 import com.zj.smart.utils.appWidgetBackgroundCornerRadius
-import com.zj.smart.utils.appWidgetInnerCornerRadius
 import com.zj.smart.utils.stringResource
 import com.zj.smart.widget.theme.GlanceColorScheme
 import com.zj.smart.widget.theme.GlanceTextStyles
@@ -111,7 +111,7 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
         ) {
             Row(
                 modifier = GlanceModifier.fillMaxSize()
-                    .appWidgetInnerCornerRadius()
+                    .cornerRadius(10.dp)
                     .background(
                         if (index == checkIndex.value) GlanceTheme.colors.errorContainer
                         else GlanceTheme.colors.tertiaryContainer
