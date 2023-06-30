@@ -15,7 +15,6 @@ import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
 import androidx.glance.Image
 import androidx.glance.ImageProvider
-import androidx.glance.LocalContext
 import androidx.glance.LocalGlanceId
 import androidx.glance.LocalSize
 import androidx.glance.action.ActionParameters
@@ -75,7 +74,6 @@ class WorkAppWidgetGlance : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-            val context = LocalContext.current
             val size = LocalSize.current
             val imagePath = currentState(getImageKey(size))
             GlanceTheme {
