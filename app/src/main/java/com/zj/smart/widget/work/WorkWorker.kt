@@ -14,11 +14,9 @@ import androidx.glance.appwidget.state.updateAppWidgetState
 import androidx.glance.appwidget.updateAll
 import androidx.work.CoroutineWorker
 import androidx.work.Data
-import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.OutOfQuotaPolicy
-import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import coil.annotation.ExperimentalCoilApi
@@ -42,9 +40,7 @@ class WorkWorker(
 
         fun enqueue(context: Context, size: DpSize, glanceId: GlanceId, force: Boolean = false) {
             val manager = WorkManager.getInstance(context)
-            val requestBuilder = PeriodicWorkRequestBuilder<WorkWorker>(
-                Duration.ofMinutes(15)
-            ).apply {
+            val requestBuilder = OneTimeWorkRequestBuilder<WorkWorker>().apply {
                 addTag(glanceId.toString())
                 setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
                 setInputData(
@@ -55,14 +51,13 @@ class WorkWorker(
                         .build()
                 )
             }
-            var workPolicy = ExistingPeriodicWorkPolicy.KEEP
-
-            // Replace any enqueued work and expedite the request
-            if (force) {
-                workPolicy = ExistingPeriodicWorkPolicy.REPLACE
+            val workPolicy = if (force) {
+                ExistingWorkPolicy.REPLACE
+            } else {
+                ExistingWorkPolicy.KEEP
             }
 
-            manager.enqueueUniquePeriodicWork(
+            manager.enqueueUniqueWork(
                 uniqueWorkName + size.width + size.height,
                 workPolicy,
                 requestBuilder.build()
@@ -84,10 +79,6 @@ class WorkWorker(
          */
         fun cancel(context: Context, glanceId: GlanceId) {
             WorkManager.getInstance(context).cancelAllWorkByTag(glanceId.toString())
-        }
-
-        fun cancel(context: Context) {
-            WorkManager.getInstance(context).cancelAllWork()
         }
     }
 
