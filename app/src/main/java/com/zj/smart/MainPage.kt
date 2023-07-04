@@ -2,7 +2,6 @@
 
 package com.zj.smart
 
-import android.os.Parcelable
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -39,27 +38,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.zj.smart.utils.StaggeredGridData
+import com.zj.smart.utils.staggeredGridDataMutableList
 import com.zj.smart.view.FeatureThatRequiresLocationPermissions
 import com.zj.smart.view.VrView
 import com.zj.smart.view.pagerTabIndicatorOffset
+import com.zj.smart.widget.mode.checkType
 import kotlinx.coroutines.launch
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
-data class StaggeredGridData(
-    val nameId: Int, val resId: Int, val detailsId: Int = R.string.device_details
-) : Parcelable
-
-val staggeredGridDataMutableList = mutableListOf<StaggeredGridData>().apply {
-    add(StaggeredGridData(R.string.air, R.drawable.air))
-    add(StaggeredGridData(R.string.display, R.drawable.display))
-    add(StaggeredGridData(R.string.projector, R.drawable.projector))
-    add(StaggeredGridData(R.string.light, R.drawable.light))
-    add(StaggeredGridData(R.string.lock, R.drawable.lock))
-    add(StaggeredGridData(R.string.camera, R.drawable.camera))
-    add(StaggeredGridData(R.string.scale, R.drawable.scale))
-    add(StaggeredGridData(R.string.cleaner, R.drawable.cleaner))
-}
 
 private val resIds = arrayOf(R.drawable.new_home, R.drawable.new_room)
 private val pages = arrayOf(R.string.house_living_room, R.string.house_bedroom)
@@ -107,7 +93,10 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
             columns = StaggeredGridCells.Fixed(2),
             content = {
                 items(staggeredGridDataMutableList) {
-                    SmartCard(it, toDetails)
+                    val smartType = it.smartType
+                    if (smartType.contains(checkType.value)) {
+                        SmartCard(it, toDetails)
+                    }
                 }
             })
 

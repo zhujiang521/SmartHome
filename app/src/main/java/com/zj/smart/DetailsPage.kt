@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.zj.smart.utils.StaggeredGridData
 
 @Composable
 fun DetailsPage(staggeredGridData: StaggeredGridData, back: () -> Unit) {

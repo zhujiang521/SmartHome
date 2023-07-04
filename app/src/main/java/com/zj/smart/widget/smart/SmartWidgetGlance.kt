@@ -35,9 +35,9 @@ import androidx.glance.layout.size
 import androidx.glance.text.Text
 import com.zj.smart.R
 import com.zj.smart.SmartActivity
-import com.zj.smart.StaggeredGridData
-import com.zj.smart.staggeredGridDataMutableList
+import com.zj.smart.utils.StaggeredGridData
 import com.zj.smart.utils.appWidgetBackgroundCornerRadius
+import com.zj.smart.utils.staggeredGridDataMutableList
 import com.zj.smart.utils.stringResource
 import com.zj.smart.widget.theme.GlanceColorScheme
 import com.zj.smart.widget.theme.GlanceTextStyles

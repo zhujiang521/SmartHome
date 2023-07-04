@@ -33,6 +33,8 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.zj.smart.utils.StaggeredGridData
+import com.zj.smart.utils.staggeredGridDataMutableList
 import com.zj.smart.view.PreviewView
 
 private val newData = StaggeredGridData(R.string.pet, R.drawable.pet)

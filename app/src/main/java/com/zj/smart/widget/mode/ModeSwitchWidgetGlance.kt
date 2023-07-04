@@ -3,10 +3,8 @@ package com.zj.smart.widget.mode
 import android.content.Context
 import android.os.Build
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceId
@@ -32,6 +30,7 @@ import androidx.glance.layout.padding
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import com.zj.smart.R
+import com.zj.smart.utils.SmartType
 import com.zj.smart.utils.VibrateUtils
 import com.zj.smart.utils.appWidgetBackgroundCornerRadius
 import com.zj.smart.utils.stringResource
@@ -41,10 +40,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
+private val checkIndex = mutableStateOf(0)
+val checkType = mutableStateOf(SmartType.Ordinary)
+
+
 class ModeSwitchWidgetGlance : GlanceAppWidget() {
 
     private val modeList =
-        listOf(R.string.mode1, R.string.mode2, R.string.mode3, R.string.mode4, R.string.mode5)
+        listOf(
+            Pair(R.string.mode1, SmartType.Ordinary),
+            Pair(R.string.mode2, SmartType.HighPlay),
+            Pair(R.string.mode3, SmartType.Sleep),
+            Pair(R.string.mode4, SmartType.Placement),
+            Pair(R.string.mode5, SmartType.Working)
+        )
 
     private suspend fun getName(): String {
         val name = withContext(Dispatchers.IO) {
@@ -91,20 +100,19 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
 
     @Composable
     private fun ModeGrid(context: Context) {
-        val checkIndex = rememberSaveable { mutableStateOf(0) }
         VibrateUtils.initVibrator(context)
         LazyVerticalGrid(
             modifier = GlanceModifier.fillMaxSize().padding(5.dp),
             gridCells = GridCells.Fixed(2)
         ) {
             itemsIndexed(modeList) { index, data ->
-                ModeItem(context, checkIndex, index, data)
+                ModeItem(context, index, data)
             }
         }
     }
 
     @Composable
-    private fun ModeItem(context: Context, checkIndex: MutableState<Int>, index: Int, data: Int) {
+    private fun ModeItem(context: Context, index: Int, data: Pair<Int, SmartType>) {
         Box(
             modifier = GlanceModifier.fillMaxWidth().height(70.dp)
                 .padding(5.dp)
@@ -119,6 +127,14 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
                     .clickable {
                         if (checkIndex.value != index) {
                             checkIndex.value = index
+                            checkType.value = when (index) {
+                                0 -> SmartType.Ordinary
+                                1 -> SmartType.HighPlay
+                                2 -> SmartType.Sleep
+                                3 -> SmartType.Placement
+                                4 -> SmartType.Ordinary
+                                else -> SmartType.Working
+                            }
                             VibrateUtils.vibrate(context, 100L)
                         }
                     },
@@ -126,7 +142,7 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = stringResource(data),
+                    text = stringResource(data.first),
                     maxLines = 2,
                     style = TextStyle(fontSize = 13.sp, color = GlanceTheme.colors.onBackground)
                 )

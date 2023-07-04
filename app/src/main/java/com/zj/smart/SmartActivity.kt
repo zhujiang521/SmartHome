@@ -27,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.zj.smart.ui.theme.SmartHomeTheme
+import com.zj.smart.utils.StaggeredGridData
 import com.zj.smart.widget.smart.SmartWidgetGlance
 
 class SmartActivity : ComponentActivity() {
