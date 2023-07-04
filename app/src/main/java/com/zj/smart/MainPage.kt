@@ -38,7 +38,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.zj.smart.utils.RoomType
 import com.zj.smart.utils.StaggeredGridData
+import com.zj.smart.utils.roomType
 import com.zj.smart.utils.staggeredGridDataMutableList
 import com.zj.smart.view.FeatureThatRequiresLocationPermissions
 import com.zj.smart.view.VrView
@@ -94,7 +96,9 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
             content = {
                 items(staggeredGridDataMutableList) {
                     val smartType = it.smartType
-                    if (smartType.contains(checkType.value)) {
+                    if (smartType.contains(checkType.value) &&
+                        it.roomType.contains(roomType.value)
+                    ) {
                         SmartCard(it, toDetails)
                     }
                 }
@@ -131,6 +135,11 @@ private fun VrPager() {
                 onClick = {
                     // Later, scroll to page 2
                     scope.launch {
+                        roomType.value = when (index) {
+                            0 -> RoomType.LivingRoom
+                            1 -> RoomType.Bedroom
+                            else -> RoomType.LivingRoom
+                        }
                         pagerState.scrollToPage(index)
                     }
                 },

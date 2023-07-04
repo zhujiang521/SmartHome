@@ -47,13 +47,7 @@ val checkType = mutableStateOf(SmartType.Ordinary)
 class ModeSwitchWidgetGlance : GlanceAppWidget() {
 
     private val modeList =
-        listOf(
-            Pair(R.string.mode1, SmartType.Ordinary),
-            Pair(R.string.mode2, SmartType.HighPlay),
-            Pair(R.string.mode3, SmartType.Sleep),
-            Pair(R.string.mode4, SmartType.Placement),
-            Pair(R.string.mode5, SmartType.Working)
-        )
+        listOf(R.string.mode1, R.string.mode2, R.string.mode3, R.string.mode4, R.string.mode5)
 
     private suspend fun getName(): String {
         val name = withContext(Dispatchers.IO) {
@@ -112,7 +106,7 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
     }
 
     @Composable
-    private fun ModeItem(context: Context, index: Int, data: Pair<Int, SmartType>) {
+    private fun ModeItem(context: Context, index: Int, data: Int) {
         Box(
             modifier = GlanceModifier.fillMaxWidth().height(70.dp)
                 .padding(5.dp)
@@ -142,7 +136,7 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = stringResource(data.first),
+                    text = stringResource(data),
                     maxLines = 2,
                     style = TextStyle(fontSize = 13.sp, color = GlanceTheme.colors.onBackground)
                 )
