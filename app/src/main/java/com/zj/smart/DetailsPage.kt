@@ -27,6 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.zj.smart.control.AirConditioner
 import com.zj.smart.utils.StaggeredGridData
 
 @Composable
@@ -74,15 +75,19 @@ fun DetailsPage(staggeredGridData: StaggeredGridData, back: () -> Unit) {
                 fontSize = 18.sp
             )
 
-            Text(
-                text = stringResource(id = staggeredGridData.detailsId),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentSize(align = Alignment.Center)
-                    .padding(start = 15.dp, end = 15.dp, bottom = 15.dp),
-                color = MaterialTheme.colorScheme.onBackground,
-                fontSize = 16.sp
-            )
+            if (staggeredGridData.resId != R.drawable.air) {
+                Text(
+                    text = stringResource(id = staggeredGridData.detailsId),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentSize(align = Alignment.Center)
+                        .padding(start = 15.dp, end = 15.dp, bottom = 15.dp),
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontSize = 16.sp
+                )
+            } else {
+                AirConditioner()
+            }
         }
     }
 }
