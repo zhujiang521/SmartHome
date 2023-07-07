@@ -28,6 +28,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zj.smart.control.AirConditioner
+import com.zj.smart.control.DefaultModel
+import com.zj.smart.control.TvControl
 import com.zj.smart.utils.StaggeredGridData
 
 @Composable
@@ -40,7 +42,7 @@ fun DetailsPage(staggeredGridData: StaggeredGridData, back: () -> Unit) {
                     modifier = Modifier
                         .fillMaxHeight()
                         .wrapContentSize(Alignment.Center),
-                    text = stringResource(id = R.string.details_name)
+                    text = stringResource(id = staggeredGridData.nameId)
                 )
             },
             //导航按钮，一般为返回按钮
@@ -57,34 +59,18 @@ fun DetailsPage(staggeredGridData: StaggeredGridData, back: () -> Unit) {
                 contentColor = MaterialTheme.colorScheme.inverseOnSurface,
             )
         ) {
-            if (staggeredGridData.resId != R.drawable.air) {
-                Image(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentScale = ContentScale.Crop,
-                    painter = painterResource(id = staggeredGridData.resId),
-                    contentDescription = stringResource(id = staggeredGridData.nameId)
-                )
+            when (staggeredGridData.resId) {
+                R.drawable.air -> {
+                    AirConditioner()
+                }
 
-                Text(
-                    text = stringResource(id = staggeredGridData.nameId),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentSize(align = Alignment.Center)
-                        .padding(15.dp),
-                    color = MaterialTheme.colorScheme.onBackground,
-                    fontSize = 18.sp
-                )
-                Text(
-                    text = stringResource(id = staggeredGridData.detailsId),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentSize(align = Alignment.Center)
-                        .padding(start = 15.dp, end = 15.dp, bottom = 15.dp),
-                    color = MaterialTheme.colorScheme.onBackground,
-                    fontSize = 16.sp
-                )
-            } else {
-                AirConditioner()
+                R.drawable.display -> {
+                    TvControl()
+                }
+
+                else -> {
+                    DefaultModel(staggeredGridData)
+                }
             }
         }
     }
