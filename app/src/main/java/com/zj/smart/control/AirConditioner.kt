@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -53,17 +54,19 @@ fun AirConditioner() {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        Spacer(modifier = Modifier.height(10.dp))
 
         Text(
             text = if (airType.value) "Tip: 为你的夏日带去清凉！" else "Tip: 为你的冬日带来温暖！",
             fontSize = 15.sp,
-            modifier = Modifier.padding(bottom = 20.dp)
+            modifier = Modifier.padding(bottom = 20.dp),
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         // 模拟空调样式
         Conditioner(airSwitch, airType, temperature)
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         Row(modifier = Modifier.padding(10.dp)) {
 
@@ -98,7 +101,7 @@ fun AirConditioner() {
             Text(text = "+")
         }
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
 
         Button(onClick = {
@@ -111,7 +114,7 @@ fun AirConditioner() {
         }, shape = RoundedCornerShape(15.dp)) {
             Text(text = "-")
         }
-
+        Spacer(modifier = Modifier.height(20.dp))
     }
 }
 
@@ -143,7 +146,7 @@ private fun Conditioner(
             Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(color = Color.LightGray)
+                    .background(color = Color.White)
                     .padding(6.dp)
             ) {
                 Image(

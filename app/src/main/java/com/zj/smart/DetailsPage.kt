@@ -53,29 +53,27 @@ fun DetailsPage(staggeredGridData: StaggeredGridData, back: () -> Unit) {
         Card(
             modifier = Modifier
                 .padding(horizontal = 16.dp), colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.onTertiary,
-                contentColor = MaterialTheme.colorScheme.onTertiary,
+                containerColor = MaterialTheme.colorScheme.inverseOnSurface,
+                contentColor = MaterialTheme.colorScheme.inverseOnSurface,
             )
         ) {
-
-            Image(
-                modifier = Modifier.fillMaxWidth(),
-                contentScale = ContentScale.Crop,
-                painter = painterResource(id = staggeredGridData.resId),
-                contentDescription = stringResource(id = staggeredGridData.nameId)
-            )
-
-            Text(
-                text = stringResource(id = staggeredGridData.nameId),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentSize(align = Alignment.Center)
-                    .padding(15.dp),
-                color = MaterialTheme.colorScheme.onBackground,
-                fontSize = 18.sp
-            )
-
             if (staggeredGridData.resId != R.drawable.air) {
+                Image(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentScale = ContentScale.Crop,
+                    painter = painterResource(id = staggeredGridData.resId),
+                    contentDescription = stringResource(id = staggeredGridData.nameId)
+                )
+
+                Text(
+                    text = stringResource(id = staggeredGridData.nameId),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentSize(align = Alignment.Center)
+                        .padding(15.dp),
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontSize = 18.sp
+                )
                 Text(
                     text = stringResource(id = staggeredGridData.detailsId),
                     modifier = Modifier
