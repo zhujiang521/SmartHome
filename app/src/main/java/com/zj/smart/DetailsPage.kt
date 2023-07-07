@@ -64,7 +64,7 @@ fun DetailsPage(staggeredGridData: StaggeredGridData, back: () -> Unit) {
                     AirConditioner()
                 }
 
-                R.drawable.display -> {
+                R.drawable.display, R.drawable.projector -> {
                     TvControl()
                 }
 

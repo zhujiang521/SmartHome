@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -45,6 +46,7 @@ fun TvControl() {
                     shape = CircleShape
                 )
                 .padding(10.dp)
+                .clickable { }
         )
 
         Image(
@@ -57,6 +59,7 @@ fun TvControl() {
                     shape = CircleShape
                 )
                 .padding(10.dp)
+                .clickable { }
         )
 
         Image(
@@ -69,6 +72,7 @@ fun TvControl() {
                     shape = CircleShape
                 )
                 .padding(10.dp)
+                .clickable { }
         )
     }
 
@@ -94,7 +98,8 @@ fun TvControl() {
                 )
                 .size(40.dp)
                 .align(Alignment.Center)
-                .wrapContentSize(Alignment.Center),
+                .wrapContentSize(Alignment.Center)
+                .clickable { },
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 14.sp
         )
@@ -108,7 +113,8 @@ fun TvControl() {
                     shape = CircleShape
                 )
                 .align(Alignment.TopCenter)
-                .wrapContentSize(Alignment.Center),
+                .wrapContentSize(Alignment.Center)
+                .clickable { },
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 14.sp
         )
@@ -122,7 +128,8 @@ fun TvControl() {
                     shape = CircleShape
                 )
                 .align(Alignment.BottomCenter)
-                .wrapContentSize(Alignment.Center),
+                .wrapContentSize(Alignment.Center)
+                .clickable { },
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 14.sp
         )
@@ -136,7 +143,8 @@ fun TvControl() {
                     shape = CircleShape
                 )
                 .align(Alignment.CenterStart)
-                .wrapContentSize(Alignment.Center),
+                .wrapContentSize(Alignment.Center)
+                .clickable { },
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 14.sp
         )
@@ -150,7 +158,8 @@ fun TvControl() {
                     shape = CircleShape
                 )
                 .align(Alignment.CenterEnd)
-                .wrapContentSize(Alignment.Center),
+                .wrapContentSize(Alignment.Center)
+                .clickable { },
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 14.sp
         )
@@ -177,6 +186,7 @@ fun TvControl() {
                     shape = CircleShape
                 )
                 .padding(10.dp)
+                .clickable { }
         )
 
         Image(
@@ -189,6 +199,7 @@ fun TvControl() {
                     shape = CircleShape
                 )
                 .padding(15.dp)
+                .clickable { }
         )
 
         Image(
@@ -201,6 +212,7 @@ fun TvControl() {
                     shape = CircleShape
                 )
                 .padding(10.dp)
+                .clickable { }
         )
     }
 
