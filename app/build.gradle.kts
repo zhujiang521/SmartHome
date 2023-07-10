@@ -48,14 +48,11 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.8"
     }
-    packagingOptions {
-        resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
-    }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.core:core-ktx:1.12.0-alpha05")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.vr:sdk-panowidget:1.80.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
@@ -64,7 +61,7 @@ dependencies {
     // To load images
     implementation("io.coil-kt:coil:2.4.0")
 
-    val composeVersion = "1.4.3"
+    val composeVersion = "1.5.0-beta03"
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-graphics:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
@@ -73,11 +70,11 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
 
-    val accompanistVersion = "0.30.1"
+    val accompanistVersion = "0.31.5-beta"
     implementation("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
     implementation("com.google.accompanist:accompanist-permissions:$accompanistVersion")
 
-    val cameraVersion = "1.2.3"
+    val cameraVersion = "1.3.0-beta01"
     implementation("androidx.camera:camera-core:$cameraVersion")
     // CameraX Camera2 extensions[可选]拓展库可实现人像、HDR、夜间和美颜、滤镜但依赖于OEM
     implementation("androidx.camera:camera-camera2:$cameraVersion")
@@ -91,7 +88,7 @@ dependencies {
     implementation("androidx.glance:glance-appwidget:$glanceVersion")
     implementation("androidx.glance:glance-material3:$glanceVersion")
 
-    val navVersion = "2.6.0"
+    val navVersion = "2.7.0-beta02"
     implementation("androidx.navigation:navigation-compose:$navVersion")
 
     testImplementation("junit:junit:4.13.2")

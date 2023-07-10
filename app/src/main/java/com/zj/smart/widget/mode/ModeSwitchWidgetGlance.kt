@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,7 +41,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-private val checkIndex = mutableStateOf(0)
+private val checkIndex = mutableIntStateOf(0)
 val checkType = mutableStateOf(SmartType.Ordinary)
 
 
@@ -115,12 +116,12 @@ class ModeSwitchWidgetGlance : GlanceAppWidget() {
                 modifier = GlanceModifier.fillMaxSize()
                     .cornerRadius(10.dp)
                     .background(
-                        if (index == checkIndex.value) GlanceTheme.colors.errorContainer
+                        if (index == checkIndex.intValue) GlanceTheme.colors.errorContainer
                         else GlanceTheme.colors.tertiaryContainer
                     )
                     .clickable {
-                        if (checkIndex.value != index) {
-                            checkIndex.value = index
+                        if (checkIndex.intValue != index) {
+                            checkIndex.intValue = index
                             checkType.value = when (index) {
                                 0 -> SmartType.Ordinary
                                 1 -> SmartType.HighPlay

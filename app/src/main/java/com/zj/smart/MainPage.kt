@@ -53,7 +53,6 @@ private val resIds = arrayOf(R.drawable.new_home, R.drawable.new_room)
 private val pages = arrayOf(R.string.house_living_room, R.string.house_bedroom)
 
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
     val showPermission = rememberSaveable { mutableStateOf(false) }
@@ -111,13 +110,23 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
 @OptIn(ExperimentalFoundationApi::class)
 private fun VrPager() {
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState()
-
-    HorizontalPager(state = pagerState, pageCount = 2) { page ->
-        Card(modifier = Modifier.padding(horizontal = 16.dp)) {
-            VrView(resIds[page])
-        }
+    val pagerState = rememberPagerState(
+        initialPage = 0,
+        initialPageOffsetFraction = 0f
+    ) {
+        pages.size
     }
+
+    HorizontalPager(
+        modifier = Modifier,
+        state = pagerState,
+        key = { pages[pagerState.currentPage] },
+        pageContent = { page ->
+            Card(modifier = Modifier.padding(horizontal = 16.dp)) {
+                VrView(resIds[page])
+            }
+        }
+    )
     TabRow(
         // Our selected tab is our current page
         selectedTabIndex = pagerState.currentPage,
