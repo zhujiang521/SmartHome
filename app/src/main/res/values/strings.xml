@@ -5,7 +5,7 @@
     <string name="app_widget_description">Smart home widgets.</string>
     <string name="light">Light</string>
     <string name="air">Air</string>
-    <string name="pet">Pet machine</string>
+    <string name="legion">Legion headphones</string>
     <string name="display">Display</string>
     <string name="projector">Projector</string>
     <string name="lock">Door lock</string>
@@ -20,9 +20,9 @@
     <string name="device_details">This is a smart device, in fact, there should be specific operations below, but due to time and other relations, this has not been implemented.</string>
     <string name="widget_name">Smart Home</string>
     <string name="pet_introduction">Product introduction</string>
-    <string name="pet_content1">Pet dynamics</string>
-    <string name="pet_content2">Automatic water change</string>
-    <string name="pet_content3">Filter element</string>
+    <string name="pet_content1">Notification Settings</string>
+    <string name="pet_content2">Touch gesture</string>
+    <string name="pet_content3">Lamp effect definition</string>
     <string name="house_living_room">Living room</string>
     <string name="house_bedroom">Bedroom</string>
     <string name="mode1">Ordinary mode</string>

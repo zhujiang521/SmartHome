@@ -18,11 +18,11 @@
     <string name="details_name">設備詳細資訊</string>
     <string name="device_details">這是一款智慧設備，其實下麵應該有具體的操作，但由於時間等關係，這還沒有實現。</string>
     <string name="widget_name">智能家居</string>
-    <string name="pet">寵物機</string>
+    <string name="legion">拯救者耳機</string>
     <string name="pet_introduction">產品介紹</string>
-    <string name="pet_content1">萌寵動態</string>
-    <string name="pet_content2">自動換水</string>
-    <string name="pet_content3">濾芯</string>
+    <string name="pet_content1">通知設置</string>
+    <string name="pet_content2">觸控手勢</string>
+    <string name="pet_content3">燈效定義</string>
     <string name="house_living_room">客廳</string>
     <string name="house_bedroom">臥室</string>
     <string name="mode1">普通模式</string>

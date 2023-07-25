@@ -18,11 +18,11 @@
     <string name="details_name">设备详细信息</string>
     <string name="device_details">这是一款智能设备，其实下面应该有具体的操作，但由于时间等关系，这还没有实现。</string>
     <string name="widget_name">智能家居</string>
-    <string name="pet">宠物机</string>
+    <string name="legion">拯救者耳机</string>
     <string name="pet_introduction">产品介绍</string>
-    <string name="pet_content1">萌宠动态</string>
-    <string name="pet_content2">自动换水</string>
-    <string name="pet_content3">滤芯</string>
+    <string name="pet_content1">通知设置</string>
+    <string name="pet_content2">触控手势</string>
+    <string name="pet_content3">灯效定义</string>
     <string name="house_living_room">客厅</string>
     <string name="house_bedroom">卧室</string>
     <string name="mode1">普通模式</string>

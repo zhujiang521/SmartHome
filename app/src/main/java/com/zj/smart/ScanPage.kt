@@ -37,7 +37,7 @@ import com.zj.smart.utils.StaggeredGridData
 import com.zj.smart.utils.staggeredGridDataMutableList
 import com.zj.smart.view.PreviewView
 
-private val newData = StaggeredGridData(R.string.pet, R.drawable.pet)
+private val newData = StaggeredGridData(R.string.legion, R.drawable.legion_black)
 
 @Composable
 fun ScanPage(back: () -> Unit) {
@@ -97,7 +97,7 @@ private fun ModelControls(showControls: MutableState<Boolean>) {
             )
         ) {
             Text(
-                text = stringResource(id = R.string.pet),
+                text = stringResource(id = R.string.legion),
                 modifier = Modifier
                     .padding(5.dp),
                 color = MaterialTheme.colorScheme.onBackground,
