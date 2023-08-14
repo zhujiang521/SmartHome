@@ -46,13 +46,13 @@ android {
         viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.8"
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0-alpha05")
+    implementation("androidx.core:core-ktx:1.12.0-rc01")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.vr:sdk-panowidget:1.80.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
@@ -61,7 +61,7 @@ dependencies {
     // To load images
     implementation("io.coil-kt:coil:2.4.0")
 
-    val composeVersion = "1.5.0-beta03"
+    val composeVersion = "1.5.0"
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-graphics:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
@@ -70,7 +70,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
 
-    val accompanistVersion = "0.31.5-beta"
+    val accompanistVersion = "0.31.6-rc"
     implementation("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
     implementation("com.google.accompanist:accompanist-permissions:$accompanistVersion")
 
@@ -83,12 +83,12 @@ dependencies {
     // CameraX View class[可选]最佳实践，最好用里面的PreviewView，它会自行判断用SurfaceView还是TextureView来实现
     implementation("androidx.camera:camera-view:$cameraVersion")
 
-    val glanceVersion = "1.0.0-beta01"
+    val glanceVersion = "1.0.0-rc01"
     implementation("androidx.glance:glance:$glanceVersion")
     implementation("androidx.glance:glance-appwidget:$glanceVersion")
     implementation("androidx.glance:glance-material3:$glanceVersion")
 
-    val navVersion = "2.7.0-beta02"
+    val navVersion = "2.7.0"
     implementation("androidx.navigation:navigation-compose:$navVersion")
 
     testImplementation("junit:junit:4.13.2")
