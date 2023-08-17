@@ -6,6 +6,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,14 +16,17 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
@@ -60,51 +64,68 @@ fun MainPage(toScan: () -> Unit, toDetails: (StaggeredGridData) -> Unit) {
     val isJump = rememberSaveable { mutableStateOf(false) }
     val alertDialog = rememberSaveable { mutableStateOf(false) }
 
-    Column(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        TopAppBar(
-            // 标题
-            title = {
-                Text(text = stringResource(id = R.string.home))
-            },
-            // 其它按钮
-            actions = {
-                IconButton(onClick = { showPermission.value = true }) {
-                    Icon(imageVector = Icons.Default.Search, contentDescription = null)
-                }
-            },
-        )
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize(),
+        topBar = {
+            TopAppBar(
+                // 标题
+                title = {
+                    Text(text = stringResource(id = R.string.home))
+                },
+                // 其它按钮
+                actions = {
+                    IconButton(onClick = { showPermission.value = true }) {
+                        Icon(imageVector = Icons.Default.Search, contentDescription = null)
+                    }
+                },
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(shape = CircleShape, onClick = { /* 处理点击事件 */ }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.baseline_keyboard_voice_24),
+                    contentDescription = ""
+                )
 
-        if (showPermission.value || alertDialog.value) {
-            FeatureThatRequiresLocationPermissions(alertDialog) {
-                if (!isJump.value) {
-                    toScan()
-                    isJump.value = false
-                }
             }
-            showPermission.value = false
         }
-        VrPager()
-
-
-        //填充数据
-        LazyVerticalStaggeredGrid(modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 8.dp, end = 8.dp, top = 9.dp),
-            columns = StaggeredGridCells.Fixed(2),
-            content = {
-                items(staggeredGridDataMutableList) {
-                    val smartType = it.smartType
-                    if (smartType.contains(checkType.value) &&
-                        it.roomType.contains(roomType.value)
-                    ) {
-                        SmartCard(it, toDetails)
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            if (showPermission.value || alertDialog.value) {
+                FeatureThatRequiresLocationPermissions(alertDialog) {
+                    if (!isJump.value) {
+                        toScan()
+                        isJump.value = false
                     }
                 }
-            })
+                showPermission.value = false
+            }
+            VrPager()
+
+            //填充数据
+            LazyVerticalStaggeredGrid(modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 8.dp, end = 8.dp, top = 9.dp),
+                columns = StaggeredGridCells.Fixed(2),
+                content = {
+                    items(staggeredGridDataMutableList) {
+                        val smartType = it.smartType
+                        if (smartType.contains(checkType.value) &&
+                            it.roomType.contains(roomType.value)
+                        ) {
+                            SmartCard(it, toDetails)
+                        }
+                    }
+                })
+        }
 
     }
+
 }
 
 @Composable
