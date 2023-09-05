@@ -23,6 +23,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -193,7 +194,7 @@ private fun Conditioner() {
     // 空调开关
     val airSwitch = rememberSaveable { mutableStateOf(true) }
     // 温度
-    val temperature = rememberSaveable { mutableStateOf(23) }
+    val temperature = rememberSaveable { mutableIntStateOf(23) }
     // 类型，制冷还是制热
     val airType = rememberSaveable { mutableStateOf(true) }
     Conditioner(airSwitch = airSwitch, airType = airType, temperature = temperature)
