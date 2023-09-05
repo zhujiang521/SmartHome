@@ -70,11 +70,11 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
 
-    val accompanistVersion = "0.31.6-rc"
+    val accompanistVersion = "0.32.0"
     implementation("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
     implementation("com.google.accompanist:accompanist-permissions:$accompanistVersion")
 
-    val cameraVersion = "1.3.0-beta01"
+    val cameraVersion = "1.3.0-rc01"
     implementation("androidx.camera:camera-core:$cameraVersion")
     // CameraX Camera2 extensions[可选]拓展库可实现人像、HDR、夜间和美颜、滤镜但依赖于OEM
     implementation("androidx.camera:camera-camera2:$cameraVersion")
@@ -88,7 +88,7 @@ dependencies {
     implementation("androidx.glance:glance-appwidget:$glanceVersion")
     implementation("androidx.glance:glance-material3:$glanceVersion")
 
-    val navVersion = "2.7.0"
+    val navVersion = "2.7.1"
     implementation("androidx.navigation:navigation-compose:$navVersion")
 
     testImplementation("junit:junit:4.13.2")
